@@ -64,4 +64,4 @@ automaticamente na primeira execução.
 
 ## Autor
 
-[Seu nome] · [LinkedIn](https://linkedin.com/in/seu-perfil)
+VICTOR RYU NOGUCHI · [LinkedIn] www.linkedin.com/in/victor-ryu-noguchi-5615b1300
