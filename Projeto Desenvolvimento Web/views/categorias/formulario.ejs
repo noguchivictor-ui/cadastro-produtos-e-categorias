@@ -1,0 +1,14 @@
+<%- include('../partials/cabecalho') %>
+
+<h2><%= categoria && categoria.id ? 'editar categoria' : 'salvar categoria' %></h2>
+<% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+<form action="<%= categoria && categoria.id ? '/categorias/editar/' + categoria.id : '/categorias/salvar' %>" method="POST">
+    <label for="nome">Nome</label>
+    <input type="text" name="nome" id="nome" value="<%= categoria ? categoria.nome : '' %>" required>
+
+    <button type="submit">Salvar</button>
+    <a href="/categorias">Cancelar</a>
+</form>
+
+
+<%- include('../partials/rodape') %>

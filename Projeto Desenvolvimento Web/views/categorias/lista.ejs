@@ -1,0 +1,33 @@
+<%- include('../partials/cabecalho') %>
+
+<h2>Categorias</h2>
+<p><a href="/categorias/nova">+ Nova categoria</a></p>
+<% if (erro === 'produtos') { %>
+    <p class="erro">esta categoria possui produtos. exclua os produtos primeiro</p>
+<% } %>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>nome</th>
+            <th>Acoes</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% categorias.forEach(categoria => { %>
+        <tr>
+            <td><%= categoria.id %></td>
+            <td><%= categoria.nome %></td>
+            <td>
+                <a href="/categorias/editar/<%= categoria.id %>">editar</a>
+                <form action="/categorias/excluir/<%= categoria.id %>" method="POST" class="em-linha">
+                    <button type="submit">excluir</button>
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+<% if (categorias.length === 0) { %><p>Nenhuma categoria cadastrada.</p><% } %>
+
+<%- include('../partials/rodape') %>

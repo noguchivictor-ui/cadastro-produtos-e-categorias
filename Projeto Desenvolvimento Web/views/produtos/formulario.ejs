@@ -1,0 +1,28 @@
+<%- include('../partials/cabecalho') %>
+
+<h2><%= produto && produto.id ? 'editar produto' : 'salvar produto' %></h2>
+<% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+<% if (categorias.length === 0) { %>
+    <p>Antes de cadastrar um produto, <a href="/categorias/nova">cadastre uma categoria</a>.</p>
+<% } else { %>
+    <form action="<%= produto && produto.id ? '/produtos/editar/' + produto.id : '/produtos/salvar' %>" method="POST">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" value="<%= produto ? produto.nome : '' %>" required>
+
+        <label for="preco">Preco (R$)</label>
+        <input type="number" name="preco" id="preco" step="0.01" min="0" value="<%= produto ? (produto.precoTexto !== undefined ? produto.precoTexto : produto.preco) : '' %>" required>
+
+        <label for="categoriasId">Categoria</label>
+        <select name="categoriasId" id="categoriasId" required>
+            <option value="">Selecione</option>
+            <% categorias.forEach(categoria => { %>
+                <option value="<%= categoria.id %>" <%= produto && Number(produto.categoriasId) === categoria.id ? 'selected' : '' %>><%= categoria.nome %></option>
+            <% }) %>
+        </select>
+
+        <button type="submit">Salvar</button>
+        <a href="/produtos">Cancelar</a>
+    </form>
+<% } %>
+
+<%- include('../partials/rodape') %>
